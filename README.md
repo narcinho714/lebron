@@ -2,8 +2,9 @@
 
 **Should the leading team foul when up 3 with under 24 seconds left?**
 A data-driven myth-buster using 29 seasons of NBA play-by-play (1996-97 to 2024-25).
+Inspired by Harwood Heuristics theorem, expanded data pool and split into pre and post 3 point revolatuon era
 
-## Hypothesis tested (H_strong)
+## Hypothesis tested
 
 Leader is up exactly 3, strictly under 24 seconds remain, the opponent has the ball.
 Claim: the leading team should foul **every single time**.
@@ -54,3 +55,7 @@ make test
 - Only 487 fouling cases; the interval is wide (about 3.2x more data needed to confirm +2.2 pp).
 - Fouled players shot 70% vs a 76% team prior, so team FT% is a rough proxy.
 - Possession is inferred from events, not observed (1 conflict in 36,668 games).
+
+## Findings
+
+- The modern era shows less concrete evidence pointing towards fouling, possibly due to evolution in 3 point shooting with better shooting league-wide since 2013. This plays into another theorem about the evaporation of 'safe-leads' with the uptick in shooting and scoring, another research angle is there to be explored into the correlation between 20 point leads in the 3rd quarter and win%
