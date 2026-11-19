@@ -1,0 +1,12 @@
+# data is large and reproducible: never commit it
+data/external/
+data/interim/
+data/processed/
+
+# python
+__pycache__/
+*.pyc
+.pytest_cache/
+*.egg-info/
+.venv/
+.ipynb_checkpoints/
