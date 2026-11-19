@@ -1,7 +1,7 @@
 PY ?= python3
 EXT = data/external/nba_data
 
-.PHONY: data ingest states analyze report test all
+.PHONY: data ingest states simple analyze report test all
 
 # 1. fetch the public play-by-play archive (large: ~2 GB, shallow clone)
 data:
@@ -15,11 +15,15 @@ ingest:
 states:
 	PYTHONPATH=src $(PY) -m foulup3.cli states
 
-# 4. estimates (naive, regression-adjusted, IPW) + figures + reports/results.md
+# 4a. THE SIMPLE TEST: raw foul vs defend win %, two eras
+simple:
+	PYTHONPATH=src $(PY) -m foulup3.simple
+
+# 4b. (optional, deeper) estimates (naive, regression-adjusted, IPW) + figures + reports/results.md
 analyze:
 	PYTHONPATH=src $(PY) -m foulup3.cli analyze
 
 test:
 	PYTHONPATH=src $(PY) -m pytest -q
 
-all: ingest states analyze
+all: ingest states simple analyze

@@ -41,6 +41,7 @@ def main(argv=None) -> None:
     p.add_argument("--seasons", type=int, nargs="*", help="e.g. 2022 2023 (default: all)")
     p.set_defaults(fn=cmd_ingest)
     sub.add_parser("states", help="extract decision states + features").set_defaults(fn=cmd_states)
+    sub.add_parser("simple", help="simple raw foul-vs-defend chart by era").set_defaults(fn=lambda a: __import__("foulup3.simple", fromlist=["run"]).run())
     sub.add_parser("analyze", help="estimates, figures, reports/results.md").set_defaults(fn=cmd_analyze)
     args = ap.parse_args(argv)
     args.fn(args)

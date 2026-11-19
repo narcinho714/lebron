@@ -8,28 +8,31 @@ A data-driven myth-buster using 29 seasons of NBA play-by-play (1996-97 to 2024-
 Leader is up exactly 3, strictly under 24 seconds remain, the opponent has the ball.
 Claim: the leader should foul **every single time**.
 
-## Headline result: NOT PROVEN
+## The simple test
 
-| | |
-|---|---|
-| Situations | 3,918 (487 fouled, 3,431 not) |
-| Naive effect on win prob. | +2.9 pp |
-| Fully adjusted effect | **+2.2 pp**, 95% CI -0.5 to +5.1 |
-| Verdict | Point estimate favours fouling; interval includes zero |
+Raw win % when the leader fouls vs defends, by seconds left, split into two eras
+(data starts 1996-97). No modelling, just counts and 95% intervals.
 
-Fouling teams are stronger and foul with less time left, which inflates the naive gap.
-The adjustment ladder (time, timeouts, team fouls, opponent shooting, quality, era) removes that,
-using both g-computation and inverse-propensity weighting. A break-even model asks what free-throw %
-the fouled player needs for fouling to pay off. Full write-up: [`reports/results.md`](reports/results.md).
+![foul vs defend](reports/simple/foul_vs_defend.png)
 
-![ladder](reports/figures/ladder.png)
+| Era | Fouled / defended | Foul minus defend | 95% CI |
+|---|---|---|---|
+| 1996-97 to 2012-13 | 237 / 2,102 | +4.0 pp | -0.0 to +6.8 |
+| 2013-14 to 2024-25 | 250 / 1,329 | +1.8 pp | -2.5 to +5.2 |
+
+Both eras lean slightly towards fouling; neither interval excludes zero.
+
+## Deeper analysis (optional)
+
+Adjusting for time, timeouts, fouls, opponent and era gives +2.2 pp (95% CI -0.5 to +5.1): **NOT PROVEN**.
+Details, break-even FT% model and subgroups: [`reports/results.md`](reports/results.md).
 
 ## Reproduce
 
 ```bash
 pip install -e . pytest
 git clone --depth 1 https://github.com/shufinskiy/nba_data data/external/nba_data   # GIT_LFS_SKIP_SMUDGE=1
-make ingest states analyze   # ~2 min for ingest
+make ingest states simple   # ~2 min for ingest; `make analyze` for the deeper report
 make test
 ```
 
@@ -41,6 +44,7 @@ make test
 - `features.py` - leak-free pre-game priors (shrunk FT%, 3P%, net rating from earlier games only)
 - `analysis.py` - adjustment ladder, balance, subgroups
 - `model.py` - break-even free-throw model
+- `simple.py` - the simple two-era chart
 - `plots.py`, `report.py` - figures and generated `results.md`
 - `tests/` - synthetic-game unit tests plus a golden real-game check
 
