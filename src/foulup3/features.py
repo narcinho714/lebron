@@ -60,5 +60,7 @@ def build_features(states: pd.DataFrame, games: pd.DataFrame, team_games: pd.Dat
     df["home_leader"] = (df["leader"] == "H").astype(int)
     df["season_c"] = (df["season"] - 2010) / 10.0
     df["post_2018"] = (df["season"] >= 2018).astype(int)
-    df["bonus_leader"] = (df["q4_leader_fouls"] >= 5).astype(int)
+    # With 4+ team fouls already, the next foul sends the opponent to the line (170 of 171 cases in the
+    # data); with fewer it usually only buys a sideline inbound. Known BEFORE the decision.
+    df["penalty_leader"] = (df["q4_leader_fouls"] >= 4).astype(int)
     return df
