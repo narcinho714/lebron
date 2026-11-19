@@ -6,7 +6,7 @@ A data-driven myth-buster using 29 seasons of NBA play-by-play (1996-97 to 2024-
 ## Hypothesis tested (H_strong)
 
 Leader is up exactly 3, strictly under 24 seconds remain, the opponent has the ball.
-Claim: the leader should foul **every single time**.
+Claim: the leading team should foul **every single time**.
 
 ## The simple test
 
