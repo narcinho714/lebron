@@ -21,7 +21,7 @@ Raw win % when the leader fouls vs defends, by seconds left, split into two eras
 | 1996-97 to 2012-13 | 237 / 2,102 | +4.0 pp | -0.0 to +6.8 |
 | 2013-14 to 2024-25 | 250 / 1,329 | +1.8 pp | -2.5 to +5.2 |
 
-Both eras lean slightly towards fouling; neither interval excludes zero.
+Both eras lean slightly towards fouling; modern era much less than previous. Owing in large part to the uptick in 3pt shooting and shooting percentage
 
 ## Deeper analysis (optional)
 
